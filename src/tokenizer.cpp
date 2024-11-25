@@ -4,6 +4,21 @@ namespace CPPlox {
 
     Tokens tokenize(const std::string& file) {
         Tokens tokens{};
+        tokens.reserve(file.size());
+
+        std::string::const_iterator it = file.begin();
+
+        while(it != file.end()){
+          switch (*it)
+          {
+          case '(':
+            tokens.emplace_back(TOKEN_TYPE::LEFT_PAREN, std::string(it, it));
+            break;
+          default:
+            break;
+          }
+          ++it;  
+        };
 
         return tokens;
     }

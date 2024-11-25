@@ -98,7 +98,7 @@ namespace CPPlox {
     struct Token{
         enum TOKEN_TYPE tokentype;
         std::string lexeme;
-
+        size_t line{};
     };
 
 
