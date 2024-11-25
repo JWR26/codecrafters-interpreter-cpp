@@ -1,5 +1,6 @@
 #include "tokenizer.h"
 
+// TODO: Document code
 namespace CPPlox {
 
     Tokens tokenize(const std::string& file) {
