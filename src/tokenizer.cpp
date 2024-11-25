@@ -13,11 +13,13 @@ namespace CPPlox {
         while(it != file.end()){
             switch (*it) {
                 case '(':
-                    tokens.emplace_back(TOKEN_TYPE::LEFT_PAREN, std::string(it, it), line);
+                    tokens.emplace_back(TOKEN_TYPE::LEFT_PAREN, std::string(1, *it), line);
                     break;
                 case ')':
-                    tokens.emplace_back(TOKEN_TYPE::RIGHT_PAREN, std::string(it, it), line);
+                    tokens.emplace_back(TOKEN_TYPE::RIGHT_PAREN, std::string(1, *it), line);
                     break;
+                case '{':
+                    tokens.emplace_back(TOKEN_TYPE::LEFT_BRACE, std::string(1, *it), line);
                 default:
                     break;
             }
