@@ -32,6 +32,6 @@ namespace CPPlox {
     }
 
     void print_token(const Token& t){
-        std::cout << TOKEN_STRING[t.tokentype] << ' ' << t.lexeme << ' ' << '\n';
+        std::cout << TOKEN_STRING[t.tokentype] << ' ' << t.lexeme << ' ' << "null" << '\n';
     }
 }
