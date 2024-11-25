@@ -4,7 +4,7 @@
 #include <sstream>
 #include <string>
 
-#include "tokenizer.hpp"
+#include "tokenizer.h"
 
 std::string read_file_contents(const std::string& filename);
 

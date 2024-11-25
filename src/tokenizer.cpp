@@ -1,4 +1,4 @@
-#include "tokenizer.hpp"
+#include "tokenizer.h"
 
 namespace CPPlox {
 
