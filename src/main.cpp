@@ -4,6 +4,8 @@
 #include <sstream>
 #include <string>
 
+#include "tokenizer.h"
+
 std::string read_file_contents(const std::string& filename);
 
 int main(int argc, char *argv[]) {
@@ -21,17 +23,14 @@ int main(int argc, char *argv[]) {
 
     const std::string command = argv[1];
 
+    std::string file_contents = read_file_contents(argv[2]);
+
+    CPPlox::Tokens tokens = CPPlox::tokenize(file_contents);
+
     if (command == "tokenize") {
-        std::string file_contents = read_file_contents(argv[2]);
-        
-        // Uncomment this block to pass the first stage
-        // 
-        if (!file_contents.empty()) {
-            std::cerr << "Scanner not implemented" << std::endl;
-            return 1;
+        for(const CPPlox::Token& t: tokens){
+            CPPlox::print_token(t);
         }
-        std::cout << "EOF  null" << std::endl; // Placeholder, remove this line when implementing the scanner
-        
     } else {
         std::cerr << "Unknown command: " << command << std::endl;
         return 1;
