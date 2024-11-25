@@ -8,13 +8,15 @@ namespace CPPlox {
 
         std::string::const_iterator it = file.begin();
 
+        size_t line{1};
+
         while(it != file.end()){
             switch (*it) {
                 case '(':
-                    tokens.emplace_back(TOKEN_TYPE::LEFT_PAREN, std::string(it, it));
+                    tokens.emplace_back(TOKEN_TYPE::LEFT_PAREN, std::string(it, it), line);
                     break;
                 case ')':
-                    tokens.emplace_back(TOKEN_TYPE::RIGHT_PAREN, std::string(it, it));
+                    tokens.emplace_back(TOKEN_TYPE::RIGHT_PAREN, std::string(it, it), line);
                     break;
                 default:
                     break;
