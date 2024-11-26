@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 
+// add docstrings
+
 namespace CPPlox {
     
     enum TOKEN_TYPE{
