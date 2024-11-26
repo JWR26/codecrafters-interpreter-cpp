@@ -29,8 +29,9 @@ int main(int argc, char *argv[]) {
     CPPlox::Tokens tokens = CPPlox::tokenize(file_contents);
 
     if (command == "tokenize") {
+        // print tokens
         for(const CPPlox::Token& t: tokens){
-            CPPlox::print_token(t);
+            std::cout << t;
         }
     } else {
         std::cerr << "Unknown command: " << command << std::endl;

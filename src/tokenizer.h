@@ -101,10 +101,25 @@ namespace CPPlox {
         enum TOKEN_TYPE tokentype;
         std::string lexeme;
         size_t line;
-        union literal{
+        union {
             double number;
             std::string string;
         };
+
+        friend std::ostream& operator<<(std::ostream& os, const Token& t){
+            os << TOKEN_STRING[t.tokentype] << ' ' << t.lexeme << ' ';
+            if (t.tokentype == TOKEN_TYPE::NUMBER){
+                os << t.number;
+            } else if (t.tokentype == TOKEN_TYPE::STRING)
+            {
+                os << t.string;
+            } else{
+                os << "null";
+            }
+            os << '\n';
+
+            return os;
+        }
     };
 
     using Tokens = std::vector<Token>;
