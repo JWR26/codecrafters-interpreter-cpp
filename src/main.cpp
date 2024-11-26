@@ -26,6 +26,7 @@ int main(int argc, char *argv[]) {
 
     std::string file_contents = read_file_contents(argv[2]);
 
+
     CPPlox::Tokens tokens = CPPlox::tokenize(file_contents);
 
     if (command == "tokenize") {

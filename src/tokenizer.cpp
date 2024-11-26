@@ -21,6 +21,10 @@ namespace CPPlox {
                     break;
                 case '{':
                     tokens.emplace_back(TOKEN_TYPE::LEFT_BRACE, std::string(1, *it), line);
+                    break;
+                case '}':
+                    tokens.emplace_back(TOKEN_TYPE::LEFT_BRACE, std::string(1, *it), line);
+                    break;
                 default:
                     break;
             }
