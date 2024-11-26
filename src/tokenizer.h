@@ -93,14 +93,18 @@ namespace CPPlox {
         "THIS",
         "TRUE",
         "VAR",
-        "WHILE,"
-        "END_OF_FILE,"
+        "WHILE",
+        "EOF",
     };
 
     struct Token{
         enum TOKEN_TYPE tokentype;
         std::string lexeme;
         size_t line;
+        union literal{
+            double number;
+            std::string string;
+        };
     };
 
     using Tokens = std::vector<Token>;

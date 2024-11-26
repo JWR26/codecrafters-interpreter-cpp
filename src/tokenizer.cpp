@@ -28,6 +28,8 @@ namespace CPPlox {
             ++it;  
         };
 
+        tokens.emplace_back(TOKEN_TYPE::END_OF_FILE, std::string(""), line);
+
         return tokens;
     }
 
