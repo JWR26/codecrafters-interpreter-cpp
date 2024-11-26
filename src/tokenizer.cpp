@@ -25,6 +25,24 @@ namespace CPPlox {
                 case '}':
                     tokens.emplace_back(TOKEN_TYPE::RIGHT_BRACE, std::string(1, *it), line);
                     break;
+                case ',':
+                    tokens.emplace_back(TOKEN_TYPE::COMMA, std::string(1, *it), line);
+                    break;
+                case '.':
+                    tokens.emplace_back(TOKEN_TYPE::DOT, std::string(1, *it), line);
+                    break;
+                case '-':
+                    tokens.emplace_back(TOKEN_TYPE::MINUS, std::string(1, *it), line);
+                    break;
+                case '+':
+                    tokens.emplace_back(TOKEN_TYPE::PLUS, std::string(1, *it), line);
+                    break;
+                case ';':
+                    tokens.emplace_back(TOKEN_TYPE::SEMICOLON, std::string(1, *it), line);
+                    break;
+                case '*':
+                    tokens.emplace_back(TOKEN_TYPE::STAR, std::string(1, *it), line);
+                    break;
                 default:
                     break;
             }
