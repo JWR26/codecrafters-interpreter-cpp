@@ -4,6 +4,7 @@
 #include <array>
 #include <iostream>
 #include <string>
+#include <variant>
 #include <vector>
 
 // add docstrings...
@@ -101,18 +102,15 @@ namespace CPPlox {
         enum TOKEN_TYPE tokentype;
         std::string lexeme;
         size_t line;
-        union {
-            double number;
-            std::string string;
-        };
+        std::variant<double, std::string> number, string;
 
         friend std::ostream& operator<<(std::ostream& os, const Token& t){
             os << TOKEN_STRING[t.tokentype] << ' ' << t.lexeme << ' ';
             if (t.tokentype == TOKEN_TYPE::NUMBER){
-                os << t.number;
+                os << std::get<double>(t.number);
             } else if (t.tokentype == TOKEN_TYPE::STRING)
             {
-                os << t.string;
+                os << std::get<std::string>(t.string);
             } else{
                 os << "null";
             }
