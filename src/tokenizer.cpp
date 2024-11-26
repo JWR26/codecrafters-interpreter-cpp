@@ -44,6 +44,7 @@ namespace CPPlox {
                     tokens.emplace_back(TOKEN_TYPE::STAR, std::string(1, *it), line);
                     break;
                 default:
+                    std::cerr << "[Line " << line << "] Error: Unexpected character: " << *it << '\n';
                     break;
             }
             
