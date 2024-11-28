@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    return 0;
+    return cpplox::errors::exit_code;
 }
 
 std::string read_file_contents(const std::string& filename) {

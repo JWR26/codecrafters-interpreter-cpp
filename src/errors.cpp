@@ -6,6 +6,7 @@ namespace cpplox {
         
         void unexpected_character(const int& line, const char& c) {
             std::cerr << "[line " << line << "] Error: Unexpected character: " << c << "\n";
+            exit_code = 65;
         }
 
     }
