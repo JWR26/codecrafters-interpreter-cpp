@@ -1,7 +1,7 @@
 #include "tokenizer.h"
 
 // TODO: Document code for clarity
-namespace CPPlox {
+namespace cpplox {
 
     Tokens tokenize(const std::string& file) {
         Tokens tokens{};

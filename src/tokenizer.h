@@ -7,9 +7,11 @@
 #include <variant>
 #include <vector>
 
+#include "errors.h"
+
 // add docstrings...
 
-namespace CPPlox {
+namespace cpplox {
     
     enum TOKEN_TYPE{
         LEFT_PAREN,
