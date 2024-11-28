@@ -49,7 +49,7 @@ namespace cpplox {
                     break;
                 case '=':
                     if (next(it) == '=') {
-                        tokens.emplace_back(TOKEN_TYPE::BANG_EQUAL, it, 2, line);
+                        tokens.emplace_back(TOKEN_TYPE::EQUAL_EQUAL, it, 2, line);
                         ++it;
                     }
                     else {
