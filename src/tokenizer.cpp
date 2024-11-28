@@ -112,7 +112,7 @@ namespace cpplox {
                     if (next(it) == '\0') {
                         errors::unterminated_string(line);
                     } else {
-                        std::shared_ptr t = std::make_shared<Token>(TOKEN_TYPE::STRING, it, 1, 1);
+                        std::shared_ptr<Token> t = std::make_shared<Token>(TOKEN_TYPE::STRING, it, 1, 1);
                         t->string = "TEST";
                         tokens.push_back(t);
                         ++it;
