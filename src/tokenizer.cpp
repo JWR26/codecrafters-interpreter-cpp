@@ -93,7 +93,11 @@ namespace cpplox {
                         tokens.emplace_back(std::make_shared<Token>(TOKEN_TYPE::SLASH, it, 1, line));
                     }
                     break;
-                case ' ' || '\r' || '\t':
+                case ' ':
+                    break;
+                case '\r':
+                    break;
+                case '\t':
                     break;
                 default:
                     errors::unexpected_character(line, *it);
