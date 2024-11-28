@@ -102,6 +102,23 @@ namespace cpplox {
                 case '\n':
                     ++line;
                     break;
+                case '"':
+                    size_t string_length { 0 };
+                    size_t start_line { line };
+                    std::string::const_iterator str {it};
+                    while (next(it) != '"' && next(it) != '\0'){
+                        if (next(it) == '\n'){
+                            ++line;
+                        }
+                        ++it;
+                        ++string_length;
+                    }
+                    if (next(it) == '\0') {
+                        errors::unterminated_string(line);
+                    } else {
+                        Token t = Token(TOKEN_TYPE::STRING, str, string_length + 2, start_line, std::string(str + 1, str + string_length + 1));
+                    }
+                    break;
                 default:
                     errors::unexpected_character(line, *it);
                     break;
