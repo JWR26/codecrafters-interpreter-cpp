@@ -110,6 +110,17 @@ namespace cpplox {
         std::variant<double, std::string> number, string;
 
         Token() {}
+        
+        Token(
+            const TOKEN_TYPE& type, 
+            const std::string::const_iterator& lexeme, 
+            const size_t& length, 
+            const size_t& line
+            ) : tokentype(type),
+            lexeme(lexeme), 
+            length(length), 
+            line(line) {}
+
 
         Token(
             const TOKEN_TYPE& type, 
