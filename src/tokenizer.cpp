@@ -94,9 +94,7 @@ namespace cpplox {
                     }
                     break;
                 case ' ':
-                    break;
                 case '\r':
-                    break;
                 case '\t':
                     break;
                 case '\n':
@@ -119,11 +117,25 @@ namespace cpplox {
                         std::shared_ptr<Token> t = std::make_shared<Token>(TOKEN_TYPE::STRING, it, std::distance(it, temp) + 1, start_line);
                         t->string = std::string(it+1, temp);
                         tokens.push_back(t);
-
                     }
                     it = temp;
                     break;
                 }
+                case '0':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
+                // placeholder for nubmer logic
+                    std::shared_ptr<Token> t = std::make_shared<Token>(TOKEN_TYPE::NUMBER, it, 1, line);
+                    t->number = 1.25;
+                    tokens.push_back(t);
+                    break;
                 default:
                     errors::unexpected_character(line, *it);
                     break;
