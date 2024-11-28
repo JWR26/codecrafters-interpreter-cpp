@@ -101,10 +101,10 @@ namespace cpplox {
     };
 
     struct Token{
-        const enum TOKEN_TYPE tokentype;
-        const std::string::const_iterator lexeme;
-        const size_t length;
-        const size_t line;
+        enum TOKEN_TYPE tokentype;
+        std::string::const_iterator lexeme;
+        size_t length;
+        size_t line;
         
         std::variant<double, std::string> number, string;
 
