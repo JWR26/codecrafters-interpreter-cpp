@@ -115,6 +115,8 @@ namespace cpplox {
                 os << *(t.lexeme + i);
             }
 
+            os << ' ';
+
             if (t.tokentype == TOKEN_TYPE::NUMBER) {
                 os << std::get<double>(t.number);
             } else if (t.tokentype == TOKEN_TYPE::STRING) {
