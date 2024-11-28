@@ -10,6 +10,8 @@ namespace cpplox {
 
         void unexpected_character(const int& line, const char& c);
 
+        int get_exit_code();
+
     }
 
 }

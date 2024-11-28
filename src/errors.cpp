@@ -9,6 +9,10 @@ namespace cpplox {
             exit_code = 65;
         }
 
+        int get_exit_code(){
+            return exit_code;
+        }
+
     }
 
 }
