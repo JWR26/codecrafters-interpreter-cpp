@@ -65,6 +65,24 @@ namespace cpplox {
                         tokens.emplace_back(std::make_shared<Token>(TOKEN_TYPE::BANG, it, 1, line));
                     }
                     break;
+                case '<':
+                    if (next(it) == '=') {
+                        tokens.emplace_back(std::make_shared<Token>(TOKEN_TYPE::LESS_EQUAL, it, 2, line));
+                        ++it;
+                    }
+                    else {
+                        tokens.emplace_back(std::make_shared<Token>(TOKEN_TYPE::LESS, it, 1, line));
+                    }
+                    break;
+                case '>':
+                    if (next(it) == '=') {
+                        tokens.emplace_back(std::make_shared<Token>(TOKEN_TYPE::GREATER_EQUAL, it, 2, line));
+                        ++it;
+                    }
+                    else {
+                        tokens.emplace_back(std::make_shared<Token>(TOKEN_TYPE::GREATER, it, 1, line));
+                    }
+                    break;
                 default:
                     errors::unexpected_character(line, *it);
                     break;
