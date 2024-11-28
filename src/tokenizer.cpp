@@ -64,7 +64,7 @@ namespace cpplox {
             ++it;  
         };
 
-        tokens.emplace_back(TOKEN_TYPE::END_OF_FILE, std::string(""), line);
+        tokens.emplace_back(TOKEN_TYPE::END_OF_FILE, it, 1, line);
 
         return tokens;
     }
