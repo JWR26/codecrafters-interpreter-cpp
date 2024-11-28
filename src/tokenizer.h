@@ -111,29 +111,6 @@ namespace cpplox {
 
         Token() {}
         
-        Token(
-            const TOKEN_TYPE& type, 
-            const std::string::const_iterator& lexeme, 
-            const size_t& length, 
-            const size_t& line
-            ) : tokentype(type),
-            lexeme(lexeme), 
-            length(length), 
-            line(line) {}
-
-
-        Token(
-            const TOKEN_TYPE& type, 
-            const std::string::const_iterator& lexeme, 
-            const size_t& length, 
-            const size_t& line, 
-            const std::string& string
-            ) : tokentype(type),
-            lexeme(lexeme), 
-            length(length), 
-            line(line),
-            string(string) {}
-
         friend std::ostream& operator<<(std::ostream& os, const Token& t) {
             os << TOKEN_STRING[t.tokentype] << ' ';
             
