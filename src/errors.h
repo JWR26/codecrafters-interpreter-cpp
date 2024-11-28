@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+// add docstrings
+
 namespace cpplox {
     namespace errors {
         
