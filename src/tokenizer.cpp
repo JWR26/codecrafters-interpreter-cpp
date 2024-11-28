@@ -64,6 +64,7 @@ namespace cpplox {
                     else {
                         tokens.emplace_back(std::make_shared<Token>(TOKEN_TYPE::BANG, it, 1, line));
                     }
+                    break;
                 default:
                     errors::unexpected_character(line, *it);
                     break;
