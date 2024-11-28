@@ -130,12 +130,13 @@ namespace cpplox {
                 case '6':
                 case '7':
                 case '8':
-                case '9':
+                case '9': {
                 // placeholder for nubmer logic
                     std::shared_ptr<Token> t = std::make_shared<Token>(TOKEN_TYPE::NUMBER, it, 1, line);
                     t->number = 1.25;
                     tokens.push_back(t);
                     break;
+                }
                 default:
                     errors::unexpected_character(line, *it);
                     break;
