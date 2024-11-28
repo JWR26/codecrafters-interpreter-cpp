@@ -117,8 +117,8 @@ namespace cpplox {
                     } else {
                         Token t = Token(TOKEN_TYPE::STRING, it - string_length, string_length + 2, first_line, std::string(it - string_length, it + string_length + 1));
                         tokens.emplace_back(std::make_shared<Token>(t));
+                        ++it;
                     }
-                    ++it;
                     break;
                 default:
                     errors::unexpected_character(line, *it);
