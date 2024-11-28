@@ -103,20 +103,16 @@ namespace cpplox {
                     ++line;
                     break;
                 case '"':
-                    size_t string_length { 0 };
-                    size_t first_line { line };
                     while (next(it) != '"' && next(it) != '\0'){
                         if (next(it) == '\n'){
                             ++line;
                         }
                         ++it;
-                        ++string_length;
                     }
                     if (next(it) == '\0') {
                         errors::unterminated_string(line);
                     } else {
-                        Token t = Token(TOKEN_TYPE::STRING, it - string_length, string_length + 2, first_line, std::string(it - string_length, it + string_length + 1));
-                        tokens.emplace_back(std::make_shared<Token>(t));
+                        tokens.emplace_back(std::make_shared<Token>(TOKEN_TYPE::SLASH, it, 1, line));
                         ++it;
                     }
                     break;
