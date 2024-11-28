@@ -99,6 +99,9 @@ namespace cpplox {
                     break;
                 case '\t':
                     break;
+                case '\n':
+                    ++line;
+                    break;
                 default:
                     errors::unexpected_character(line, *it);
                     break;
