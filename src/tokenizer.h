@@ -111,7 +111,7 @@ namespace cpplox {
         friend std::ostream& operator<<(std::ostream& os, const Token& t) {
             os << TOKEN_STRING[t.tokentype] << ' ';
             
-            for (size_t i = 0; i < 10; ++i){
+            for (size_t i = 0; i < t.length; ++i){
                 os << *(t.lexeme + i);
             }
 
