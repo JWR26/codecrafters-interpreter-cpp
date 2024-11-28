@@ -83,6 +83,16 @@ namespace cpplox {
                         tokens.emplace_back(std::make_shared<Token>(TOKEN_TYPE::GREATER, it, 1, line));
                     }
                     break;
+                case '/':
+                    if (next(it) == '/') {
+                        while (next(it) != '\n' && next(it) != '\0'){
+                            ++it;
+                        }
+                    }
+                    else {
+                        tokens.emplace_back(std::make_shared<Token>(TOKEN_TYPE::SLASH, it, 1, line));
+                    }
+                    break;
                 default:
                     errors::unexpected_character(line, *it);
                     break;
