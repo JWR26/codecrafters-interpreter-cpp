@@ -101,19 +101,25 @@ namespace cpplox {
     };
 
     struct Token{
-        enum TOKEN_TYPE tokentype;
-        std::string lexeme;
-        size_t line;
+        const enum TOKEN_TYPE tokentype;
+        const std::string::const_iterator lexeme;
+        const size_t length;
+        const size_t line;
+        
         std::variant<double, std::string> number, string;
 
-        friend std::ostream& operator<<(std::ostream& os, const Token& t){
-            os << TOKEN_STRING[t.tokentype] << ' ' << t.lexeme << ' ';
-            if (t.tokentype == TOKEN_TYPE::NUMBER){
+        friend std::ostream& operator<<(std::ostream& os, const Token& t) {
+            os << TOKEN_STRING[t.tokentype] << ' ';
+            
+            for (size_t i = 0; i < 10; ++i){
+                os << *(t.lexeme + i);
+            }
+
+            if (t.tokentype == TOKEN_TYPE::NUMBER) {
                 os << std::get<double>(t.number);
-            } else if (t.tokentype == TOKEN_TYPE::STRING)
-            {
+            } else if (t.tokentype == TOKEN_TYPE::STRING) {
                 os << std::get<std::string>(t.string);
-            } else{
+            } else {
                 os << "null";
             }
             os << '\n';
@@ -126,7 +132,8 @@ namespace cpplox {
 
     Tokens tokenize(const std::string& file);
 
-    void print_token(const Token& t);
+    char next(const std::string::const_iterator& it);
+
 }
 
 #endif
