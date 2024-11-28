@@ -102,22 +102,27 @@ namespace cpplox {
                 case '\n':
                     ++line;
                     break;
-                case '"':
-                    while (next(it) != '"' && next(it) != '\0'){
-                        if (next(it) == '\n'){
+                case '"': {
+                    std::string::const_iterator temp = it;
+                    size_t start_line{line}; 
+
+                    while (next(temp) != '"' && next(temp) != '\0'){
+                        if (next(temp) == '\n'){
                             ++line;
                         }
-                        ++it;
+                        ++temp;
                     }
-                    if (next(it) == '\0') {
+                    if (next(temp) == '\0') {
                         errors::unterminated_string(line);
                     } else {
-                        std::shared_ptr<Token> t = std::make_shared<Token>(TOKEN_TYPE::STRING, it, 1, 1);
+                        std::shared_ptr<Token> t = std::make_shared<Token>(TOKEN_TYPE::STRING, it, std::distance(it, temp) + 1, start_line);
                         t->string = "TEST";
                         tokens.push_back(t);
-                        ++it;
+                        ++temp;
                     }
+                    it = temp;
                     break;
+                }
                 default:
                     errors::unexpected_character(line, *it);
                     break;
