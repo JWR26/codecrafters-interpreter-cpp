@@ -109,8 +109,6 @@ namespace cpplox {
         
         std::variant<double, std::string> number, string;
 
-        Token() {}
-        
         friend std::ostream& operator<<(std::ostream& os, const Token& t) {
             os << TOKEN_STRING[t.tokentype] << ' ';
             
