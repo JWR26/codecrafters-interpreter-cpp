@@ -3,6 +3,7 @@
 
 #include <array>
 #include <iostream>
+#include <memory>
 #include <string>
 #include <variant>
 #include <vector>
@@ -130,7 +131,7 @@ namespace cpplox {
         }
     };
 
-    using Tokens = std::vector<Token>;
+    using Tokens = std::vector<std::shared_ptr<Token>>;
 
     Tokens tokenize(const std::string& file);
 

@@ -1,6 +1,7 @@
 #include <cstring>
 #include <fstream>
 #include <iostream>
+#include <memory>
 #include <sstream>
 #include <string>
 
@@ -31,8 +32,8 @@ int main(int argc, char *argv[]) {
 
     if (command == "tokenize") {
         // print tokens
-        for(const cpplox::Token& t: tokens){
-            std::cout << t;
+        for(const std::shared_ptr<cpplox::Token>& t: tokens){
+            std::cout << *t;
         }
     } else {
         std::cerr << "Unknown command: " << command << std::endl;
