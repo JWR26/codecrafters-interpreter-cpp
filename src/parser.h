@@ -11,6 +11,7 @@
 namespace cpplox {
 
     struct Expression{
+        virtual std::ostream& print(std::ostream& os) const = 0;
     };
 
     using Expr_ptr = std::shared_ptr<Expression>;
@@ -31,10 +32,12 @@ namespace cpplox {
             boolean = b;
         }
 
+        virtual std::ostream& print(std::ostream& os) const override {
+            return os << "Literal Expression";
+        }
+
         friend std::ostream& operator<<(std::ostream& os, const literal& expr) {
-            std::cerr << "calling ostream on literal...";
-            os << "Literal Expression";
-            return os;
+            return expr.print(os);
         }
     };
 
@@ -42,9 +45,12 @@ namespace cpplox {
         std::shared_ptr<Token> op;
         std::shared_ptr<unary> right;
 
+        virtual std::ostream& print(std::ostream& os) const override {
+            return os << "Unary Expression\n";
+        }
+
         friend std::ostream& operator<<(std::ostream& os, const unary& expr) {
-            os << "Unary Expression\n";
-            return os;
+            return expr.print(os);
         }
     };
 
@@ -52,19 +58,25 @@ namespace cpplox {
         Expr_ptr left;
         std::shared_ptr<Token> op;
         Expr_ptr right;
+        
+        virtual std::ostream& print(std::ostream& os) const override {
+            return os << "Binary Expression\n";
+        }
 
         friend std::ostream& operator<<(std::ostream& os, const binary& expr) {
-            os << "Binary Expression\n";
-            return os;
+            return expr.print(os);
         }
     };
 
     struct grouping : Expression {
         Expr_ptr expr;
         
+        virtual std::ostream& print(std::ostream& os) const override {
+            return os << "Grouping Expression\n";
+        }
+        
         friend std::ostream& operator<<(std::ostream& os, const grouping& expr) {
-            os << "Grouping Expression\n";
-            return os;
+            return expr.print(os);
         }
     };
 
