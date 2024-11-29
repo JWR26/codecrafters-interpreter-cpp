@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
             std::cout << *t;
         }
     } else if (command == "parse"){
-        std::cout << *ast;
+        ast->print(std::cout);
     } else {
         std::cerr << "Unknown command: " << command << std::endl;
         return 1;
