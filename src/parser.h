@@ -33,12 +33,13 @@ namespace cpplox {
         }
 
         virtual std::ostream& print(std::ostream& os) const override {
+            if (std::get_if<bool>(&boolean)){
+                os << std::boolalpha;
+                return os << std::get<bool>(boolean);
+            }
             return os << "Literal Expression";
         }
 
-        friend std::ostream& operator<<(std::ostream& os, const literal& expr) {
-            return expr.print(os);
-        }
     };
 
     struct unary : Expression {
@@ -49,9 +50,6 @@ namespace cpplox {
             return os << "Unary Expression\n";
         }
 
-        friend std::ostream& operator<<(std::ostream& os, const unary& expr) {
-            return expr.print(os);
-        }
     };
 
     struct binary : Expression {
@@ -63,9 +61,6 @@ namespace cpplox {
             return os << "Binary Expression\n";
         }
 
-        friend std::ostream& operator<<(std::ostream& os, const binary& expr) {
-            return expr.print(os);
-        }
     };
 
     struct grouping : Expression {
@@ -75,9 +70,6 @@ namespace cpplox {
             return os << "Grouping Expression\n";
         }
         
-        friend std::ostream& operator<<(std::ostream& os, const grouping& expr) {
-            return expr.print(os);
-        }
     };
 
     Expr_ptr expression(Tokens_iterator& it);
