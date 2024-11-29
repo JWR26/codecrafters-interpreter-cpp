@@ -2,6 +2,8 @@
 #define PARSER
 
 #include <memory>
+#include <string>
+#include <variant>
 
 #include "tokenizer.h"
 
@@ -17,7 +19,19 @@ namespace cpplox {
     using Expr_ptr = std::shared_ptr<Expression>;
 
     struct literal : Expression {
-        std::shared_ptr<Token> value;
+        std::variant<std::string, double, bool> string, number, boolean;
+
+        literal(const std::string& str){
+            string = str;
+        }
+
+        literal(const double& num){
+            number = num;
+        }
+
+        literal(const bool& b){
+            boolean = b;
+        }
 
         friend std::ostream& operator<<(std::ostream& os, const literal& expr) {
             os << "Literal Expression";
