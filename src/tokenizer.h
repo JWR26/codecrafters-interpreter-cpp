@@ -130,26 +130,26 @@ namespace cpplox {
         
         std::variant<double, std::string> number, string;
 
-        friend std::ostream& operator<<(std::ostream& os, const Token& t) {
-            os << TOKEN_STRING[t.tokentype] << ' ';
+        std::ostream& operator<<(std::ostream& os) {
+            os << TOKEN_STRING[tokentype] << ' ';
             
-            for (size_t i = 0; i < t.length; ++i){
-                os << *(t.lexeme + i);
+            for (size_t i = 0; i < length; ++i){
+                os << *(lexeme + i);
             }
 
             os << ' ';
 
-            if (t.tokentype == TOKEN_TYPE::NUMBER) {
+            if (tokentype == TOKEN_TYPE::NUMBER) {
                 double integral;
-                double decimal = std::modf(std::get<double>(t.number), &integral);
+                double decimal = std::modf(std::get<double>(number), &integral);
                 if (decimal == 0.0) {
                     os << integral << '.' << '0';
                 } else {
-                    os << std::get<double>(t.number);
+                    os << std::get<double>(number);
                 }
                 
-            } else if (t.tokentype == TOKEN_TYPE::STRING) {
-                os << std::get<std::string>(t.string);
+            } else if (tokentype == TOKEN_TYPE::STRING) {
+                os << std::get<std::string>(string);
             } else {
                 os << "null";
             }
@@ -160,6 +160,8 @@ namespace cpplox {
     };
 
     using Tokens = std::vector<std::shared_ptr<Token>>;
+
+    using Tokens_iterator = std::vector<std::shared_ptr<Token>>::const_iterator;
 
     Tokens tokenize(const std::string& file);
 
