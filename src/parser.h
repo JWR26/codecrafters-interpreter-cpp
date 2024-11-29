@@ -30,10 +30,12 @@ namespace cpplox {
         }
 
         literal(const bool& b){
+            std::cerr << "initialised a boolean literal";
             boolean = b;
         }
 
         friend std::ostream& operator<<(std::ostream& os, const literal& expr) {
+            std::cerr << "calling ostream on literal...";
             os << "Literal Expression";
             return os;
         }
