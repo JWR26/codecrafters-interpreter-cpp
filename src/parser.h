@@ -39,7 +39,18 @@ namespace cpplox {
                 os << std::boolalpha;
                 return os << std::get<bool>(boolean);
             }
-            
+
+            if (std::get_if<double>(&number)){
+                double integral;
+                double decimal = std::modf(std::get<double>(number), &integral);
+                if (decimal == 0.0) {
+                    os << integral << '.' << '0';
+                } else {
+                    os << std::get<double>(number);
+                }
+                return os;
+            }
+
             return os << "nil";
         }
 
