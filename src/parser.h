@@ -8,7 +8,7 @@
 namespace cpplox {
 
     struct Expression{
-        virtual std::ostream& operator<<(std::ostream& os) = 0;
+        virtual friend std::ostream& operator<<(std::ostream& os, const Expression& expr) = 0;
     };
 
     using Expr_ptr = std::shared_ptr<Expression>;
@@ -16,7 +16,7 @@ namespace cpplox {
     struct literal : Expression {
         std::shared_ptr<Token> value;
 
-        std::ostream& operator<<(std::ostream& os) override {
+        friend std::ostream& operator<<(std::ostream& os, const Expression& expr) {
             os << "Literal Expression";
             return os;
         }
@@ -26,7 +26,7 @@ namespace cpplox {
         std::shared_ptr<Token> op;
         std::shared_ptr<unary> right;
 
-        std::ostream& operator<<(std::ostream& os) override {
+        friend std::ostream& operator<<(std::ostream& os, const Expression& expr) {
             os << "Unary Expression\n";
             return os;
         }
@@ -37,7 +37,7 @@ namespace cpplox {
         std::shared_ptr<Token> op;
         Expr_ptr right;
 
-        std::ostream& operator<<(std::ostream& os) override {
+        friend std::ostream& operator<<(std::ostream& os, const Expression& expr) {
             os << "Binary Expression\n";
             return os;
         }
@@ -46,7 +46,7 @@ namespace cpplox {
     struct grouping : Expression {
         Expr_ptr expr;
         
-        std::ostream& operator<<(std::ostream& os) override {
+        friend std::ostream& operator<<(std::ostream& os, const Expression& expr) {
             os << "Grouping Expression\n";
             return os;
         }

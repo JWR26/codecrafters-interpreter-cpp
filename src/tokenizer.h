@@ -130,26 +130,26 @@ namespace cpplox {
         
         std::variant<double, std::string> number, string;
 
-        std::ostream& operator<<(std::ostream& os) {
-            os << TOKEN_STRING[tokentype] << ' ';
+        friend std::ostream& operator<<(std::ostream& os, const Token& t) {
+            os << TOKEN_STRING[t.tokentype] << ' ';
             
-            for (size_t i = 0; i < length; ++i){
-                os << *(lexeme + i);
+            for (size_t i = 0; i < t.length; ++i){
+                os << *(t.lexeme + i);
             }
 
             os << ' ';
 
-            if (tokentype == TOKEN_TYPE::NUMBER) {
+            if (t.tokentype == TOKEN_TYPE::NUMBER) {
                 double integral;
-                double decimal = std::modf(std::get<double>(number), &integral);
+                double decimal = std::modf(std::get<double>(t.number), &integral);
                 if (decimal == 0.0) {
                     os << integral << '.' << '0';
                 } else {
-                    os << std::get<double>(number);
+                    os << std::get<double>(t.number);
                 }
                 
-            } else if (tokentype == TOKEN_TYPE::STRING) {
-                os << std::get<std::string>(string);
+            } else if (t.tokentype == TOKEN_TYPE::STRING) {
+                os << std::get<std::string>(t.string);
             } else {
                 os << "null";
             }
