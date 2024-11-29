@@ -133,10 +133,24 @@ namespace cpplox {
                 // placeholder for nubmer logic
                     double number{0};
                     std::string::const_iterator start = it;
+                    
+                    while (isdigit(*it)) {
+                        number *= 10;
+                        number += *it - '0';
+                        ++it;
+                    }
+                    if (*it == '.') {
+                        double decimal {0};
+                        double divisor {10};
+                        while (isdigit(*it)) {
+                            number += (*it - '0') / divisor;
+                            divisor *= 10;
+                            ++it;
+                        }
+                        number += decimal;
+                    }
 
-
-
-                    std::shared_ptr<Token> t = std::make_shared<Token>(TOKEN_TYPE::NUMBER, it, 1, line);
+                    std::shared_ptr<Token> t = std::make_shared<Token>(TOKEN_TYPE::NUMBER, start, std::distance(start, it), line);
                     t->number = number;
                     tokens.push_back(t);
                     break;
