@@ -160,7 +160,7 @@ namespace cpplox {
                 default:
                     if (isalpha(*it) || *it == '_') {
                         std::string::const_iterator start = it;
-                        while (isalpha(next(it)) || next(it) == '_') {
+                        while (isalpha(next(it)) || next(it) == '_' || isdigit(next(it))) {
                             ++it;
                         }
                         tokens.emplace_back(std::make_shared<Token>(TOKEN_TYPE::IDENTIFIER, start, std::distance(start, it) + 1, line));
