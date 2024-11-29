@@ -35,6 +35,8 @@ int main(int argc, char *argv[]) {
         for(const std::shared_ptr<cpplox::Token>& t: tokens){
             std::cout << *t;
         }
+    } else if (command == "parse"){
+        std::cout << "Parser not implemented\n";
     } else {
         std::cerr << "Unknown command: " << command << std::endl;
         return 1;
