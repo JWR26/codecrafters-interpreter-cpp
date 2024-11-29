@@ -119,7 +119,9 @@ namespace cpplox {
             os << ' ';
 
             if (t.tokentype == TOKEN_TYPE::NUMBER) {
-                os << std::get<double>(t.number);
+                double integral;
+                double decimal = std::modf(std::get<double>(t.number), &integral);
+                os << integral << '.' << decimal;
             } else if (t.tokentype == TOKEN_TYPE::STRING) {
                 os << std::get<std::string>(t.string);
             } else {
