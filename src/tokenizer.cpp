@@ -158,7 +158,15 @@ namespace cpplox {
                     break;
                 }
                 default:
-                    errors::unexpected_character(line, *it);
+                    if (isalpha(*it) || *it == '_') {
+                        std::string::const_iterator start = it;
+                        while (isspace(next(it))) {
+                            ++it;
+                        }
+                        tokens.emplace_back(std::make_shared<Token>(TOKEN_TYPE::IDENTIFIER, start, std::distance(start, it) + 1, line));
+                    } else {
+                        errors::unexpected_character(line, *it);
+                    }
                     break;
             }
             
