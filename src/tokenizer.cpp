@@ -140,6 +140,7 @@ namespace cpplox {
                         ++it;
                     }
                     if (*it == '.') {
+                        ++it;
                         double decimal {0};
                         double divisor {10};
                         while (isdigit(*it)) {
