@@ -28,9 +28,9 @@ namespace cpplox{
 
     Expr_ptr primary(Tokens_iterator& it){
         if ((*it)->tokentype == TOKEN_TYPE::TRUE){
-            return std::make_shared<literal>(*it);
+            return std::make_shared<literal>();
         }
-        return std::make_shared<literal>(*it);
+        return std::make_shared<literal>();
     }
     
     Expr_ptr parse(const Tokens& tokens){
