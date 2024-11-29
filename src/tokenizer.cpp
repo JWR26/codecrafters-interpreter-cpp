@@ -163,7 +163,13 @@ namespace cpplox {
                         while (isalpha(next(it)) || next(it) == '_' || isdigit(next(it))) {
                             ++it;
                         }
-                        tokens.emplace_back(std::make_shared<Token>(TOKEN_TYPE::IDENTIFIER, start, std::distance(start, it) + 1, line));
+                        TOKEN_TYPE type = IDENTIFIER;
+                        std::string word{start, it};
+                        std::unordered_map<std::string, TOKEN_TYPE>::const_iterator res = RESERVED_WORDS.find(word);
+                        if (res != RESERVED_WORDS.end()){
+                            type = res->second;
+                        }
+                        tokens.emplace_back(std::make_shared<Token>(type, start, std::distance(start, it) + 1, line));
                     } else {
                         errors::unexpected_character(line, *it);
                     }

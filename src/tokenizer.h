@@ -6,6 +6,7 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <unordered_map>
 #include <variant>
 #include <vector>
 
@@ -102,6 +103,25 @@ namespace cpplox {
         "EOF",
     };
 
+    const std::unordered_map<std::string, TOKEN_TYPE> RESERVED_WORDS {
+        {"and", TOKEN_TYPE::AND},
+        {"class", TOKEN_TYPE::CLASS},
+        {"else", TOKEN_TYPE::ELSE},
+        {"false", TOKEN_TYPE::FALSE},
+        {"for", TOKEN_TYPE::FOR},
+        {"fun", TOKEN_TYPE::FUN},
+        {"if", TOKEN_TYPE::IF},
+        {"nil", TOKEN_TYPE::NIL},
+        {"or", TOKEN_TYPE::OR},
+        {"print", TOKEN_TYPE::PRINT},
+        {"return", TOKEN_TYPE::RETURN},
+        {"super", TOKEN_TYPE::SUPER},
+        {"this", TOKEN_TYPE::THIS},
+        {"true", TOKEN_TYPE::TRUE},
+        {"var", TOKEN_TYPE::VAR},
+        {"while", TOKEN_TYPE::WHILE}
+    };
+
     struct Token{
         enum TOKEN_TYPE tokentype;
         std::string::const_iterator lexeme;
@@ -144,7 +164,6 @@ namespace cpplox {
     Tokens tokenize(const std::string& file);
 
     char next(const std::string::const_iterator& it);
-
 }
 
 #endif
