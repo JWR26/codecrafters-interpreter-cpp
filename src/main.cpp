@@ -6,6 +6,7 @@
 #include <string>
 
 // headers to include
+#include "parser.h"
 #include "tokenizer.h"
 
 std::string read_file_contents(const std::string& filename);
@@ -30,13 +31,15 @@ int main(int argc, char *argv[]) {
 
     cpplox::Tokens tokens = cpplox::tokenize(file_contents);
 
+    cpplox::Expr_ptr ast = cpplox::parse(tokens);
+
     if (command == "tokenize") {
         // print tokens
         for(const std::shared_ptr<cpplox::Token>& t: tokens){
             std::cout << *t;
         }
     } else if (command == "parse"){
-        std::cout << "Parser not implemented\n";
+        std::cout << ast;
     } else {
         std::cerr << "Unknown command: " << command << std::endl;
         return 1;
