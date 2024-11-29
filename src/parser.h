@@ -49,7 +49,7 @@ namespace cpplox {
     struct grouping : Expression {
         Expr_ptr expr;
         
-        friend std::ostream& operator<<(std::ostream& os, const Expression& expr) {
+        friend std::ostream& operator<<(std::ostream& os, const grouping& expr) {
             os << "Grouping Expression\n";
             return os;
         }
