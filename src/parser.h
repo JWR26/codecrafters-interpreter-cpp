@@ -11,10 +11,6 @@
 namespace cpplox {
 
     struct Expression{
-        friend std::ostream& operator<<(std::ostream& os, const Expression& expr) {
-            os << "Base expression\n";
-            return os;
-        }
     };
 
     using Expr_ptr = std::shared_ptr<Expression>;
