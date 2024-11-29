@@ -101,6 +101,7 @@ namespace cpplox {
                     ++line;
                     break;
                 case '"': {
+                    std::cerr << "creating string\n";
                     std::string::const_iterator start = it;
                     size_t start_line{line}; 
 
