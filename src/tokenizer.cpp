@@ -149,7 +149,7 @@ namespace cpplox {
                         }
                         number += decimal;
                     }
-
+                    --it;
                     std::shared_ptr<Token> t = std::make_shared<Token>(TOKEN_TYPE::NUMBER, start, std::distance(start, it), line);
                     t->number = number;
                     tokens.push_back(t);
