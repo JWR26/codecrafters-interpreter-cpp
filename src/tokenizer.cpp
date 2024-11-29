@@ -101,24 +101,23 @@ namespace cpplox {
                     ++line;
                     break;
                 case '"': {
-                    std::string::const_iterator temp = it;
+                    std::string::const_iterator start = it;
                     size_t start_line{line}; 
 
-                    while (next(temp) != '"' && next(temp) != '\0'){
-                        if (next(temp) == '\n'){
+                    while (next(it) != '"' && next(it) != '\0'){
+                        if (next(it) == '\n'){
                             ++line;
                         }
-                        ++temp;
+                        ++it;
                     }
-                    if (next(temp) == '\0') {
+                    if (next(it) == '\0') {
                         errors::unterminated_string(line);
                     } else {
-                        ++temp;
-                        std::shared_ptr<Token> t = std::make_shared<Token>(TOKEN_TYPE::STRING, it, std::distance(it, temp) + 1, start_line);
-                        t->string = std::string(it+1, temp);
+                        ++it;
+                        std::shared_ptr<Token> t = std::make_shared<Token>(TOKEN_TYPE::STRING, start, std::distance(start, it) + 1, start_line);
+                        t->string = std::string(it+1, it);
                         tokens.push_back(t);
                     }
-                    it = temp;
                     break;
                 }
                 case '0':
@@ -132,8 +131,13 @@ namespace cpplox {
                 case '8':
                 case '9': {
                 // placeholder for nubmer logic
+                    double number{0};
+                    std::string::const_iterator start = it;
+
+
+
                     std::shared_ptr<Token> t = std::make_shared<Token>(TOKEN_TYPE::NUMBER, it, 1, line);
-                    t->number = 1.25;
+                    t->number = number;
                     tokens.push_back(t);
                     break;
                 }
