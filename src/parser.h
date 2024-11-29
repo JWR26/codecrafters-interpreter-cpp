@@ -1,6 +1,7 @@
 #ifndef PARSER
 #define PARSER
 
+#include <iostream>
 #include <memory>
 #include <string>
 #include <variant>
