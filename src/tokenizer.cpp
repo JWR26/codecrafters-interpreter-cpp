@@ -134,7 +134,7 @@ namespace cpplox {
                     double number{0};
                     std::string::const_iterator start = it;
                     
-                    while (isdigit(*it) && next(it) != '\0') {
+                    while (isdigit(*it)) {
                         number *= 10;
                         number += *it - '0';
                         ++it;
