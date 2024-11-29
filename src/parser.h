@@ -8,7 +8,10 @@
 namespace cpplox {
 
     struct Expression{
-        virtual friend std::ostream& operator<<(std::ostream& os, const Expression& expr) = 0;
+        friend std::ostream& operator<<(std::ostream& os, const Expression& expr) {
+            os << "Base expression\n";
+            return os;
+        }
     };
 
     using Expr_ptr = std::shared_ptr<Expression>;
@@ -16,7 +19,7 @@ namespace cpplox {
     struct literal : Expression {
         std::shared_ptr<Token> value;
 
-        friend std::ostream& operator<<(std::ostream& os, const Expression& expr) {
+        friend std::ostream& operator<<(std::ostream& os, const literal& expr) {
             os << "Literal Expression";
             return os;
         }
@@ -26,7 +29,7 @@ namespace cpplox {
         std::shared_ptr<Token> op;
         std::shared_ptr<unary> right;
 
-        friend std::ostream& operator<<(std::ostream& os, const Expression& expr) {
+        friend std::ostream& operator<<(std::ostream& os, const unary& expr) {
             os << "Unary Expression\n";
             return os;
         }
@@ -37,7 +40,7 @@ namespace cpplox {
         std::shared_ptr<Token> op;
         Expr_ptr right;
 
-        friend std::ostream& operator<<(std::ostream& os, const Expression& expr) {
+        friend std::ostream& operator<<(std::ostream& os, const binary& expr) {
             os << "Binary Expression\n";
             return os;
         }
