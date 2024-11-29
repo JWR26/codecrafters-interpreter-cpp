@@ -101,12 +101,10 @@ namespace cpplox {
                     ++line;
                     break;
                 case '"': {
-                    std::cerr << "creating string\n";
                     std::string::const_iterator start = it;
                     size_t start_line{line}; 
 
                     while (next(it) != '"' && next(it) != '\0'){
-                        std::cerr << *it;
                         if (next(it) == '\n'){
                             ++line;
                         }
@@ -117,7 +115,7 @@ namespace cpplox {
                     } else {
                         ++it;
                         std::shared_ptr<Token> t = std::make_shared<Token>(TOKEN_TYPE::STRING, start, std::distance(start, it) + 1, start_line);
-                        t->string = std::string(it+1, it);
+                        t->string = std::string(start+1, it);
                         tokens.push_back(t);
                     }
                     break;
