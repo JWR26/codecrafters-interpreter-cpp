@@ -2,6 +2,7 @@
 #define TOKENIZER
 
 #include <array>
+#include <cmath>
 #include <iostream>
 #include <memory>
 #include <string>
@@ -121,7 +122,12 @@ namespace cpplox {
             if (t.tokentype == TOKEN_TYPE::NUMBER) {
                 double integral;
                 double decimal = std::modf(std::get<double>(t.number), &integral);
-                os << integral << '.' << decimal;
+                if (decimal == 0.0) {
+                    os << integral << '.' << '0';
+                } else {
+                    os << std::get<double>(t.number);
+                }
+                
             } else if (t.tokentype == TOKEN_TYPE::STRING) {
                 os << std::get<std::string>(t.string);
             } else {
