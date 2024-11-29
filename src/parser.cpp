@@ -33,7 +33,7 @@ namespace cpplox{
         if ((*it)->tokentype == TOKEN_TYPE::FALSE){
             return std::make_shared<literal>(false);
         }
-        return std::make_shared<literal>("nil");
+        return std::make_shared<literal>();
     }
     
     Expr_ptr parse(const Tokens& tokens){

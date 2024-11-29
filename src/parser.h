@@ -19,6 +19,8 @@ namespace cpplox {
     struct literal : Expression {
         std::variant<std::string, double, bool> string, number, boolean;
 
+        literal() {}
+
         literal(const std::string& str){
             string = str;
         }
@@ -37,7 +39,8 @@ namespace cpplox {
                 os << std::boolalpha;
                 return os << std::get<bool>(boolean);
             }
-            return os << "Literal Expression";
+            
+            return os << "nil";
         }
 
     };
