@@ -106,6 +106,7 @@ namespace cpplox {
                     size_t start_line{line}; 
 
                     while (next(it) != '"' && next(it) != '\0'){
+                        std::cerr << *it;
                         if (next(it) == '\n'){
                             ++line;
                         }
