@@ -164,7 +164,7 @@ namespace cpplox {
                             ++it;
                         }
                         TOKEN_TYPE type = IDENTIFIER;
-                        std::string word{start, it};
+                        std::string word{start, it+1};
                         std::unordered_map<std::string, TOKEN_TYPE>::const_iterator res = RESERVED_WORDS.find(word);
                         if (res != RESERVED_WORDS.end()){
                             type = res->second;
