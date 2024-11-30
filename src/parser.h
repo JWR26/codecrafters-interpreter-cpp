@@ -51,6 +51,10 @@ namespace cpplox {
                 return os;
             }
 
+            if (std::get_if<std::string>(&string)){
+                return os << std::get<std::string>(string);
+            }
+
             return os << "nil";
         }
 
