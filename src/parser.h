@@ -89,8 +89,9 @@ namespace cpplox {
         }
         
         virtual std::ostream& print(std::ostream& os) const override {
-            os << "(group " << &expr->print(os) << ')';
-            return os;
+            os << "(group ";
+            expr->print(os);
+            return os << ')';
         }
         
     };
