@@ -34,7 +34,7 @@ namespace cpplox{
             return std::make_shared<literal>(false);
         }
         if ((*it)->tokentype == TOKEN_TYPE::NUMBER){
-            return std::make_shared<literal>((*it)->number);
+            return std::make_shared<literal>(std::get<double>((*it)->number));
         }
         return std::make_shared<literal>();
     }
