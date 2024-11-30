@@ -83,6 +83,10 @@ namespace cpplox {
 
     struct grouping : Expression {
         Expr_ptr expr;
+
+        grouping(const Expr_ptr& _expr){
+            expr = _expr;
+        }
         
         virtual std::ostream& print(std::ostream& os) const override {
             os << "(group " << &expr->print(os) << ')';
