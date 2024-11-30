@@ -85,7 +85,8 @@ namespace cpplox {
         Expr_ptr expr;
         
         virtual std::ostream& print(std::ostream& os) const override {
-            return os << "Grouping Expression\n";
+            os << "(group " << &expr->print(os) << ')';
+            return os;
         }
         
     };
