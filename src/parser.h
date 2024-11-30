@@ -72,7 +72,9 @@ namespace cpplox {
         }
 
         virtual std::ostream& print(std::ostream& os) const override {
-            return os << "Unary Expression\n";
+            os << *op->lexeme;
+            right->print(os);
+            return os;
         }
 
     };
