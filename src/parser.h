@@ -14,22 +14,24 @@ namespace cpplox {
         virtual std::ostream& print(std::ostream& os) const = 0;
     };
 
+    using Token_ptr = std::shared_ptr<Token>;
+
     using Expr_ptr = std::shared_ptr<Expression>;
 
-    struct literal : Expression {
+    struct Literal : Expression {
         std::variant<std::string, double, bool> string, number, boolean;
 
-        literal() {}
+        Literal() {}
 
-        literal(const std::string& str){
+        Literal(const std::string& str){
             string = str;
         }
 
-        literal(const double& num){
+        Literal(const double& num){
             number = num;
         }
 
-        literal(const bool& b){
+        Literal(const bool& b){
             std::cerr << "initialised a boolean literal";
             boolean = b;
         }
@@ -60,9 +62,14 @@ namespace cpplox {
 
     };
 
-    struct unary : Expression {
-        std::shared_ptr<Token> op;
-        std::shared_ptr<unary> right;
+    struct Unary : Expression {
+        Token_ptr op;
+        Expr_ptr right;
+
+        Unary(const Token_ptr& _op, const Expr_ptr& _right){
+            op = _op;
+            right = _right;
+        }
 
         virtual std::ostream& print(std::ostream& os) const override {
             return os << "Unary Expression\n";
@@ -72,7 +79,7 @@ namespace cpplox {
 
     struct binary : Expression {
         Expr_ptr left;
-        std::shared_ptr<Token> op;
+        Token_ptr op;
         Expr_ptr right;
         
         virtual std::ostream& print(std::ostream& os) const override {

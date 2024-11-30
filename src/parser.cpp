@@ -23,21 +23,26 @@ namespace cpplox{
     }
 
     Expr_ptr unary(Tokens_iterator& it){
+        if((*it)->tokentype == TOKEN_TYPE::BANG || (*it)->tokentype == TOKEN_TYPE::MINUS){
+            Token_ptr t_ptr = *it;
+            Expr_ptr right = unary(++it);
+            return std::make_shared<Unary>(t_ptr, right);
+        }
         return primary(it);
     }
 
     Expr_ptr primary(Tokens_iterator& it){
         if ((*it)->tokentype == TOKEN_TYPE::TRUE){
-            return std::make_shared<literal>(true);
+            return std::make_shared<Literal>(true);
         }
         if ((*it)->tokentype == TOKEN_TYPE::FALSE){
-            return std::make_shared<literal>(false);
+            return std::make_shared<Literal>(false);
         }
         if ((*it)->tokentype == TOKEN_TYPE::NUMBER){
-            return std::make_shared<literal>(std::get<double>((*it)->number));
+            return std::make_shared<Literal>(std::get<double>((*it)->number));
         }
         if ((*it)->tokentype == TOKEN_TYPE::STRING){
-            return std::make_shared<literal>(std::get<std::string>((*it)->string));
+            return std::make_shared<Literal>(std::get<std::string>((*it)->string));
         }
 
         if((*it)->tokentype == TOKEN_TYPE::LEFT_PAREN){
@@ -45,7 +50,7 @@ namespace cpplox{
             ++it;
             return std::make_shared<grouping>(expr);
         }
-        return std::make_shared<literal>();
+        return std::make_shared<Literal>();
     }
     
     Expr_ptr parse(const Tokens& tokens){
