@@ -79,7 +79,7 @@ namespace cpplox {
 
     };
 
-    struct binary : Expression {
+    struct Binary : Expression {
         Expr_ptr left;
         Token_ptr op;
         Expr_ptr right;

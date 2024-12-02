@@ -19,7 +19,15 @@ namespace cpplox{
     }
 
     Expr_ptr factor(Tokens_iterator& it){
-        return unary(it);
+        Expr_ptr expr = unary(it);
+
+        while((*it)->tokentype == TOKEN_TYPE::SLASH || (*it)->tokentype == TOKEN_TYPE::STAR){
+            Token_ptr op = *it;
+            Expr_ptr right = factor(++it);
+            expr = std::make_shared<Binary>(expr, op, right);
+        }
+        
+        return expr;
     }
 
     Expr_ptr unary(Tokens_iterator& it){
