@@ -85,7 +85,10 @@ namespace cpplox {
         Expr_ptr right;
         
         virtual std::ostream& print(std::ostream& os) const override {
-            return os << "Binary Expression\n";
+            os << '(' << *op->lexeme << ' ';
+            left->print(os) << ' ';
+            right->print(os) << ')';
+            return os;
         }
 
     };
