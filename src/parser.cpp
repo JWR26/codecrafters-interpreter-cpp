@@ -21,6 +21,8 @@ namespace cpplox{
     Expr_ptr factor(Tokens_iterator& it){
         Expr_ptr expr = unary(it);
 
+        ++it;
+        
         while((*it)->tokentype == TOKEN_TYPE::SLASH || (*it)->tokentype == TOKEN_TYPE::STAR){
             Token_ptr op = *it;
             Expr_ptr right = factor(++it);
