@@ -83,6 +83,12 @@ namespace cpplox {
         Expr_ptr left;
         Token_ptr op;
         Expr_ptr right;
+
+        Binary(const Expr_ptr& _left, const Token_ptr& _op, const Expr_ptr& _right){
+            left = _left;
+            op = _op;
+            right = _right;
+        }
         
         virtual std::ostream& print(std::ostream& os) const override {
             os << '(' << *op->lexeme << ' ';
