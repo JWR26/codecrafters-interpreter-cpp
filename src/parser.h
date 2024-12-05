@@ -92,9 +92,10 @@ namespace cpplox {
         
         virtual std::ostream& print(std::ostream& os) const override {
             os << '(' << *op->lexeme << ' ';
-            left->print(os) << ' ';
-            right->print(os) << ')';
-            return os;
+            left->print(os);
+            os << ' ';
+            right->print(os);
+            return os << ')';
         }
 
     };
