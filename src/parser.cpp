@@ -80,6 +80,7 @@ namespace cpplox{
         }
 
         if((*it)->tokentype == TOKEN_TYPE::LEFT_PAREN){
+            std::cerr << "Parsing grouping... ";
             Expr_ptr expr = std::make_shared<grouping>(expression(++it));
             if ((*it)->tokentype != TOKEN_TYPE::RIGHT_PAREN){
                 errors::unexpected_token((*it)->line, *(*it)->lexeme);
