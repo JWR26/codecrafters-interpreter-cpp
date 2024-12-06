@@ -60,6 +60,7 @@ namespace cpplox{
             Expr_ptr expr = expression(++it);
             ++it; //
             std::cerr << "Grouping parsed.";
+            std::cerr << expr;
             return std::make_shared<grouping>(expr);
         }
         return std::make_shared<Literal>();
