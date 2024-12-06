@@ -4,10 +4,16 @@
 #include <memory>
 #include <sstream>
 #include <string>
+#include <unordered_set>
 
 // headers to include
 #include "parser.h"
 #include "tokenizer.h"
+
+const std::unordered_set<std::string> VALID_ARGUMENTS{
+    "tokenize",
+    "parse",
+};
 
 std::string read_file_contents(const std::string& filename);
 
@@ -25,9 +31,13 @@ int main(int argc, char *argv[]) {
     }
 
     const std::string command = argv[1];
+    
+    if (VALID_ARGUMENTS.find(command) == VALID_ARGUMENTS.end()) {
+        std::cerr << "Unknown command: " << command << std::endl;
+        return 1;
+    }
 
     std::string file_contents = read_file_contents(argv[2]);
-
 
     cpplox::Tokens tokens = cpplox::tokenize(file_contents);
 
@@ -46,9 +56,10 @@ int main(int argc, char *argv[]) {
     
     if (command == "parse"){
         ast->print(std::cout);
-    } else {
-        std::cerr << "Unknown command: " << command << std::endl;
-        return 1;
+    } 
+    
+    if (cpplox::errors::get_exit_code() != 0) {
+        return cpplox::errors::get_exit_code() != 0;
     }
 
     return 0;
