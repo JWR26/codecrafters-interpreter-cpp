@@ -23,7 +23,6 @@ namespace cpplox{
             std::cout << **it;
             Expr_ptr right = factor(++it);
             expr = std::make_shared<Binary>(expr, op, right);
-            ++it;
         }
         
         return expr;
