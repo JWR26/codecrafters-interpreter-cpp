@@ -38,14 +38,20 @@ int main(int argc, char *argv[]) {
         for(const std::shared_ptr<cpplox::Token>& t: tokens){
             std::cout << *t;
         }
-    } else if (command == "parse"){
+    }
+    
+    if (cpplox::errors::get_exit_code() != 0) {
+        return cpplox::errors::get_exit_code() != 0;
+    }
+    
+    if (command == "parse"){
         ast->print(std::cout);
     } else {
         std::cerr << "Unknown command: " << command << std::endl;
         return 1;
     }
 
-    return cpplox::errors::get_exit_code();
+    return 0;
 }
 
 std::string read_file_contents(const std::string& filename) {
