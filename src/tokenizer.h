@@ -157,6 +157,13 @@ namespace cpplox {
 
             return os;
         }
+
+        std::ostream& print_lexeme(std::ostream& os) const {
+            for (size_t i = 0; i < length; ++i){
+                os << *(lexeme + i);
+            }
+            return os;
+        }
     };
 
     using Tokens = std::vector<std::shared_ptr<Token>>;
