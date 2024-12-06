@@ -14,8 +14,6 @@ namespace cpplox {
 
     struct Expression{
 
-        Expression() {}
-        
         virtual std::ostream& print(std::ostream& os) const = 0;
     };
 

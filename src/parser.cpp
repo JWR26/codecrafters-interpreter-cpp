@@ -97,7 +97,7 @@ namespace cpplox{
             return expression(it);
         }
         catch (...){
-            return std::make_shared<Expression>();
+            return nullptr;
         }
     }
 
