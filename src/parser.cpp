@@ -17,7 +17,7 @@ namespace cpplox{
     Expr_ptr term(Tokens_iterator& it){
         Expr_ptr expr = factor(it);
         ++it;
-
+        std::cout << expr;
         while((*it)->tokentype == TOKEN_TYPE::MINUS || (*it)->tokentype == TOKEN_TYPE::PLUS){
             Token_ptr op = *it;
             Expr_ptr right = factor(++it);
