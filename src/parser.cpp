@@ -80,7 +80,12 @@ namespace cpplox{
         }
 
         if((*it)->tokentype == TOKEN_TYPE::LEFT_PAREN){
-            Expr_ptr expr = std::make_shared<grouping>(expression(++it));;
+            Expr_ptr expr = std::make_shared<grouping>(expression(++it));
+            ++it;
+            if ((*it)->tokentype != TOKEN_TYPE::RIGHT_PAREN){
+                errors::unexpected_token((*it)->line, *(*it)->lexeme);
+                throw std::exception();
+            }
             return expr;
         }
         return std::make_shared<Literal>();
@@ -88,7 +93,12 @@ namespace cpplox{
     
     Expr_ptr parse(const Tokens& tokens){
         Tokens_iterator it = tokens.begin();
-        return expression(it);
+        try{
+            return expression(it);
+        }
+        catch (...){
+            return std::make_shared<Expression>(nullptr);
+        }
     }
 
 }

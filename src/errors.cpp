@@ -17,6 +17,11 @@ namespace cpplox {
             std::cerr << "[line " << line << "] Error: Unterminated string.";
             exit_code = 65;
         }
+
+        void unexpected_token(const int& line, const char& c) {
+            std::cerr << "[line " << line << "] Error at '" << c << "': Expect expression.\n";
+            exit_code = 65;
+        }
     }
 
 }

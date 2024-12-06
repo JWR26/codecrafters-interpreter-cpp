@@ -15,6 +15,8 @@ namespace cpplox {
         void unexpected_character(const int& line, const char& c);
 
         void unterminated_string(const int& line);
+
+        void unexpected_token(const int& line, const char& c);
         
     }
 

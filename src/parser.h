@@ -1,12 +1,14 @@
 #ifndef PARSER
 #define PARSER
 
+#include <exception>
 #include <iostream>
 #include <memory>
 #include <string>
 #include <variant>
 
 #include "tokenizer.h"
+#include "errors.h"
 
 namespace cpplox {
 
