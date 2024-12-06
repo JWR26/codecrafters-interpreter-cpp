@@ -15,12 +15,10 @@ namespace cpplox{
     }
 
     Expr_ptr term(Tokens_iterator& it){
-        std::cout << **it;
         Expr_ptr expr = factor(it);
-        std::cout << **it;
+        // factor will move the pointer, no need to increment for the term
         while((*it)->tokentype == TOKEN_TYPE::MINUS || (*it)->tokentype == TOKEN_TYPE::PLUS){
             Token_ptr op = *it;
-            std::cout << **it;
             Expr_ptr right = factor(++it);
             expr = std::make_shared<Binary>(expr, op, right);
         }
