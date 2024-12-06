@@ -20,6 +20,7 @@ namespace cpplox{
         expr->print(std::cerr);
         while((*it)->tokentype == TOKEN_TYPE::MINUS || (*it)->tokentype == TOKEN_TYPE::PLUS){
             Token_ptr op = *it;
+            std::cout << *op;
             Expr_ptr right = factor(++it);
             expr = std::make_shared<Binary>(expr, op, right);
             ++it;
