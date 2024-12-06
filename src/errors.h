@@ -17,8 +17,6 @@ namespace cpplox {
 
         void unterminated_string(const int& line);
 
-        void unexpected_token(const int& line, const std::shared_ptr<cpplox::Token>& t);
-        
     }
 
 }
