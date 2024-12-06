@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
     }
     
     if (cpplox::errors::get_exit_code() != 0) {
-        return cpplox::errors::get_exit_code() != 0;
+        return cpplox::errors::get_exit_code();
     }
     
     if (command == "parse"){
