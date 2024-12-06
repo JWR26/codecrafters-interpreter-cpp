@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+#include "tokenizer.h"
 // add docstrings
 
 namespace cpplox {
@@ -16,7 +17,7 @@ namespace cpplox {
 
         void unterminated_string(const int& line);
 
-        void unexpected_token(const int& line, const char& c);
+        void unexpected_token(const int& line, const std::shared_ptr<Token>& t);
         
     }
 
