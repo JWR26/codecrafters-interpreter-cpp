@@ -17,11 +17,10 @@ namespace cpplox{
     Expr_ptr term(Tokens_iterator& it){
         std::cout << **it;
         Expr_ptr expr = factor(it);
-        expr->print(std::cerr);
         std::cout << **it;
         while((*it)->tokentype == TOKEN_TYPE::MINUS || (*it)->tokentype == TOKEN_TYPE::PLUS){
             Token_ptr op = *it;
-            
+            std::cout << **it;
             Expr_ptr right = factor(++it);
             expr = std::make_shared<Binary>(expr, op, right);
             ++it;
