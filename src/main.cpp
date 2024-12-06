@@ -55,13 +55,12 @@ int main(int argc, char *argv[]) {
 
     if (command == "parse"){
         cpplox::Expr_ptr ast = cpplox::parse(tokens);
+        if (cpplox::errors::get_exit_code() != 0) {
+            return cpplox::errors::get_exit_code() != 0;
+        }
         ast->print(std::cout);
     } 
     
-    if (cpplox::errors::get_exit_code() != 0) {
-        return cpplox::errors::get_exit_code() != 0;
-    }
-
     return 0;
 }
 
