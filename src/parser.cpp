@@ -97,7 +97,8 @@ namespace cpplox{
             return expression(it);
         }
         catch (...){
-            std::cerr << "Exception caught\n,";
+            std::cerr << "Exception caught\n";
+            std::exit(65);
             return nullptr;
         }
     }
