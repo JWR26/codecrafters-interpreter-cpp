@@ -88,7 +88,9 @@ namespace cpplox{
             }
             return expr;
         }
-        return std::make_shared<Literal>();
+        
+        errors::exit_code = 65;
+        throw std::exception();
     }
     
     Expr_ptr parse(const Tokens& tokens){
