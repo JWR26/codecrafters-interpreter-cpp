@@ -57,7 +57,7 @@ namespace cpplox{
 
         if((*it)->tokentype == TOKEN_TYPE::LEFT_PAREN){
             Expr_ptr expr = expression(++it);
-            ++it;
+            ++it; //
             return std::make_shared<grouping>(expr);
         }
         return std::make_shared<Literal>();
