@@ -52,9 +52,9 @@ int main(int argc, char *argv[]) {
         return cpplox::errors::get_exit_code();
     }
 
-    cpplox::Expr_ptr ast = cpplox::parse(tokens);
 
     if (command == "parse"){
+        cpplox::Expr_ptr ast = cpplox::parse(tokens);
         ast->print(std::cout);
     } 
     
