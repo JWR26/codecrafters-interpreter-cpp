@@ -56,6 +56,7 @@ int main(int argc, char *argv[]) {
     if (command == "parse"){
         cpplox::Expr_ptr ast = cpplox::parse(tokens);
         if (cpplox::errors::get_exit_code() != 0) {
+            std::cerr << "early parse error return";
             return cpplox::errors::get_exit_code();
         }
         ast->print(std::cout);
