@@ -41,8 +41,6 @@ int main(int argc, char *argv[]) {
 
     cpplox::Tokens tokens = cpplox::tokenize(file_contents);
 
-    cpplox::Expr_ptr ast = cpplox::parse(tokens);
-
     if (command == "tokenize") {
         // print tokens
         for(const std::shared_ptr<cpplox::Token>& t: tokens){
@@ -53,7 +51,9 @@ int main(int argc, char *argv[]) {
     if (cpplox::errors::get_exit_code() != 0) {
         return cpplox::errors::get_exit_code();
     }
-    
+
+    cpplox::Expr_ptr ast = cpplox::parse(tokens);
+
     if (command == "parse"){
         ast->print(std::cout);
     } 
