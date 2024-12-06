@@ -7,7 +7,15 @@ namespace cpplox{
     }
 
     Expr_ptr equality(Tokens_iterator& it){
-        return comparison(it);
+        Expr_ptr expr = comparison(it);
+        // factor will move the pointer, no need to increment for the term
+        while((*it)->tokentype == TOKEN_TYPE::BANG_EQUAL || (*it)->tokentype == TOKEN_TYPE::EQUAL_EQUAL){
+            Token_ptr op = *it;
+            Expr_ptr right = comparison(++it);
+            expr = std::make_shared<Binary>(expr, op, right);
+        }
+        
+        return expr;
     }
 
     Expr_ptr comparison(Tokens_iterator& it){
