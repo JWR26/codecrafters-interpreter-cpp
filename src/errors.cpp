@@ -18,7 +18,7 @@ namespace cpplox {
             exit_code = 65;
         }
 
-        void unexpected_token(const int& line, const std::shared_ptr<Token>& t) {
+        void unexpected_token(const int& line, const std::shared_ptr<cpplox::Token>& t) {
             if (t->tokentype == TOKEN_TYPE::END_OF_FILE){
                 std::cerr << "[line " << t->line << "] Error at end. Expect expression.\n";
             } else {
