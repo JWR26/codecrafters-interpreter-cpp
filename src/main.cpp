@@ -34,11 +34,13 @@ int main(int argc, char *argv[]) {
     cpplox::Expr_ptr ast = cpplox::parse(tokens);
 
     if (command == "tokenize") {
+        std::cerr << "Tokenizing...";
         // print tokens
         for(const std::shared_ptr<cpplox::Token>& t: tokens){
             std::cout << *t;
         }
     } else if (command == "parse"){
+        std::cerr << "Parsing...";
         ast->print(std::cout);
     } else {
         std::cerr << "Unknown command: " << command << std::endl;
