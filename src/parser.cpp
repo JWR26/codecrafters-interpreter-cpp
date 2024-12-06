@@ -24,8 +24,9 @@ namespace cpplox{
 
         while((*it)->tokentype == TOKEN_TYPE::SLASH || (*it)->tokentype == TOKEN_TYPE::STAR){
             Token_ptr op = *it;
-            Expr_ptr right = factor(++it);
+            Expr_ptr right = unary(++it);
             expr = std::make_shared<Binary>(expr, op, right);
+            ++it;
         }
         
         return expr;
